@@ -1,9 +1,19 @@
 package com.samoilov.itsamoilov.controller;
 
+import com.samoilov.itsamoilov.Application;
 import com.samoilov.itsamoilov.DB;
+import com.samoilov.itsamoilov.User;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -96,15 +106,30 @@ public class RegController {
             try {
                 boolean isAuth = db.authUser(login_auth.getCharacters().toString(), pass);
                 if (isAuth) {
+                    FileOutputStream fos = new FileOutputStream("user.settings");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+                    oos.writeObject(new User(login_auth.getCharacters().toString()));
+                    oos.close();
+
                     login_auth.setText("");
                     pass_auth.setText("");
                     btn_auth.setText("Готово");
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    stage.setTitle("Программа itSamoilov!");
+                    stage.setScene(scene);
+                    stage.show();
                 } else {
                     btn_auth.setText("Пользователь не найден");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
