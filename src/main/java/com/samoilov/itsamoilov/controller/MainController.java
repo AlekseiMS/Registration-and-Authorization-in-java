@@ -57,6 +57,16 @@ public class MainController {
 
                 Label intro =(Label) node.lookup("#intro");
                 intro.setText(res.getString("intro"));
+
+                final  Node nodeSet = node;
+                nodeSet.setOnMouseEntered(event -> {
+                    nodeSet.setStyle("-fx-background-color: #707173");
+                });
+
+                nodeSet.setOnMouseExited(event -> {
+                    nodeSet.setStyle("-fx-background-color: #343434");
+                });
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
