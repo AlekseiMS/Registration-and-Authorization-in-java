@@ -14,11 +14,11 @@ public class DB {
 
     private Connection getDbConnection() throws ClassNotFoundException, SQLException {
         String connStr = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME +
-                "?verifyServerCertificate=false"+
-                "&useSSL=false"+
-                "&requireSSL=false"+
-                "&useLegacyDatetimeCode=false"+
-                "&amp"+
+                "?verifyServerCertificate=false" +
+                "&useSSL=false" +
+                "&requireSSL=false" +
+                "&useLegacyDatetimeCode=false" +
+                "&amp" +
                 "&serverTimezone=UTC";
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -36,7 +36,7 @@ public class DB {
 
         Statement statement = getDbConnection().createStatement();
         ResultSet res = statement.executeQuery("SELECT * FROM `users` WHERE `login` = '" + login + "' LIMIT 1");
-        if(res.next())
+        if (res.next())
             return false;
 
         PreparedStatement prSt = getDbConnection().prepareStatement(sql);
@@ -53,6 +53,20 @@ public class DB {
         ResultSet res = statement.executeQuery(sql);
 
         return res.next();
+    }
+
+    public ResultSet getArticles() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT `title`, `intro` FROM `articles`";
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery(sql);
+        return res;
+    }
+
+    public ResultSet getArtecles() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT `title`, `intro` FROM `articles`";
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery(sql);
+        return res;
     }
 
 }

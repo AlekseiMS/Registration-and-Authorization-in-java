@@ -1,6 +1,7 @@
 package com.samoilov.itsamoilov;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -12,7 +13,7 @@ import java.io.ObjectInputStream;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        String scen = "sample.fxml";
+        String scen = "/com/samoilov/itsamoilov/sample.fxml";
         File file = new File("user.settings");
         boolean exists = file.exists();
         if (exists) {
@@ -28,11 +29,11 @@ public class Application extends javafx.application.Application {
             }
             ois.close();
         }
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(scen));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Parent root = FXMLLoader.load(getClass().getResource(scen));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(scen));
+        //Scene scene = new Scene(root.load(), 600, 400);
         stage.setTitle("Программа itSamoilov!");
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
     }
 
