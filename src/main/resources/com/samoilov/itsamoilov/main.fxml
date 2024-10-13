@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.samoilov.itsamoilov.controller.MainController">
     <children>
-        <Label layoutX="179.0" layoutY="34.0" text="Новости с сайта" textFill="WHITE">
+        <Label layoutX="195.0" layoutY="35.0" text="Новости с сайта" textFill="WHITE">
             <font>
                 <Font name="Monospaced Bold" size="25.0" />
             </font>
@@ -28,5 +28,13 @@
             <VBox fx:id="paneVbox" prefHeight="303.0" prefWidth="599.0" style="-fx-background-color: #343434;" />
          </content>
       </ScrollPane>
+      <Button fx:id="btn_add_article" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" stylesheets="@../../../styles/style.css" text="Добавить статью" textFill="WHITE">
+         <font>
+            <Font name="Monospaced Regular" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

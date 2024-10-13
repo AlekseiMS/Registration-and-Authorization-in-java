@@ -29,10 +29,11 @@ import javafx.stage.Stage;
 public class MainController {
 
     @FXML
-    private Button btn_exit;
+    private Button btn_exit, btn_add_article;
 
     @FXML
     private VBox paneVbox;
+
     private DB db = new DB();
 
     @FXML
@@ -97,12 +98,19 @@ public class MainController {
                 stage.setTitle("Программа itSamoilov!");
                 stage.setScene(new Scene(root, 600, 400));
                 stage.show();
-//                FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("sample.fxml")); //resources/com/samoilov/itsamoilov/
-//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                scene = new Scene(fxmlLoader.load(), 600, 400);
-//                stage.setTitle("Программа itSamoilov!");
-//                stage.setScene(scene);
-//                stage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        btn_add_article.setOnAction(event -> {
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/com/samoilov/itsamoilov/addArticle.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Программа itSamoilov!");
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
